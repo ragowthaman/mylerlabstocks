@@ -1,0 +1,53 @@
+[
+    {
+        "model": "materials.organism",
+        "pk": 1,
+        "fields": {
+            "code": "Lmj",
+            "genus": "Leishmania",
+            "species": "major",
+            "strain": "Friedlin"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 2,
+        "fields": {
+            "code": "Lta",
+            "genus": "Leishmania",
+            "species": "tarentolae",
+            "strain": "Parrot"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 3,
+        "fields": {
+            "code": "Lin",
+            "genus": "Leishmania",
+            "species": "infantum",
+            "strain": "Jpcm5"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 4,
+        "fields": {
+            "code": "Ldo",
+            "genus": "Leishmania",
+            "species": "donovani",
+            "strain": "BPK282A1"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 5,
+        "fields": {
+            "code": "Ldo",
+            "genus": "Leishmania",
+            "species": "donovani",
+            "strain": "S"
+        }
+    }
+
+]

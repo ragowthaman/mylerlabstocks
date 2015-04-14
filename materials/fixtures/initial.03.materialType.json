@@ -1,0 +1,42 @@
+[
+    {
+        "model": "materials.materialType",
+        "pk": 1,
+        "fields": {
+            "type": "Stabilate",
+            "notes": "Stabilates in lab"
+        }
+    },
+    {
+        "model": "materials.materialType",
+        "pk": 2,
+        "fields": {
+            "type": "Clone",
+            "notes": "Clones in lab"
+        }
+    },
+    {
+        "model": "materials.materialType",
+        "pk": 3,
+        "fields": {
+            "type": "GenomicDNA",
+            "notes": "GenomicDNA in lab"
+        }
+    },
+    {
+        "model": "materials.materialType",
+        "pk": 4,
+        "fields": {
+            "type": "RNA",
+            "notes": "RNA in lab"
+        }
+    },
+    {
+        "model": "materials.materialType",
+        "pk": 5,
+        "fields": {
+            "type": "ProteinSample",
+            "notes": "ProteinSamples in lab"
+        }
+    }
+]

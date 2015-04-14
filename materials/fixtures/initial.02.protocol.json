@@ -1,0 +1,11 @@
+[
+    {
+        "model": "materials.protocol",
+        "pk": 1,
+        "fields": {
+            "name": "test",
+            "link": "www.google.com",
+            "notes": "test entry"
+        }
+    }
+]

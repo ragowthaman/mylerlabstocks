@@ -1,0 +1,32 @@
+[
+    {
+        "model": "materials.author",
+        "pk": 1,
+        "fields": {
+            "firstname": "Andrew",
+            "lastname": "Haydock",
+            "designation": "AH",
+            "email": "andrew.haydock@seattlebiomed.org"
+        }
+    },
+    {
+        "model": "materials.author",
+        "pk": 2,
+        "fields": {
+            "firstname": "Aarti",
+            "lastname": "Sekhar",
+            "designation": "AS",
+            "email": "aarti.sekhar@seattlebiomed.org"
+        }
+    },
+    {
+        "model": "materials.author",
+        "pk": 3,
+        "fields": {
+            "firstname": "Loren",
+            "lastname": "Baugh",
+            "designation": "LB",
+            "email": "loren.baugh@seattlebiomed.org"
+        }
+    }
+]
