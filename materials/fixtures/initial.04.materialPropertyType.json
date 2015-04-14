@@ -1,0 +1,65 @@
+[
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 1,
+      "fields": {
+          "term": "is_transformed",
+          "notes": "is the stabilate a transformed cell",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 2,
+      "fields": {
+          "term": "episomal_or_stable",
+          "notes": "is it an episomal transformation or stable transformation. Values are = episomal/stable",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 3,
+      "fields": {
+          "term": "antibiotics",
+          "notes": "Name of the antibiotic(s) used for selection",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 4,
+      "fields": {
+          "term": "clone_code",
+          "notes": "Code of the clone used in transformation; Foreign key to the clone in this database;",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 5,
+      "fields": {
+          "term": "clone_name",
+          "notes": "Name of the clone used in transformation",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 6,
+      "fields": {
+          "term": "name_before",
+          "notes": "Name of the stabilate used for transformation",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 7,
+      "fields": {
+          "term": "code_before",
+          "notes": "Code of the stabilates used for transformation; Foreign key to the clone in this database;",
+          "materialtype": 1
+      }
+    }
+]
