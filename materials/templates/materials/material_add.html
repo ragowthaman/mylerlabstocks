@@ -1,0 +1,39 @@
+{%block content%}
+{% block body %}
+
+{%  if save_sucesses %}
+    Data added to database. Thanks!
+{%  elif materialtype  %}
+    <FORM action="." method="post">
+    {% csrf_token %}
+        <TABLE>
+            <TR>
+                <TD>
+                    {{ materialform.as_table }}
+                </TD>
+                <TD>
+                    {{ storageinstanceform.as_table }}
+                </TD>
+                <TD>
+                    <input type="submit"  name="addMaterial" value="Add To Database" />
+                 </TD>
+            </TR>
+        </TABLE>
+    </FORM>
+{% else %}
+<FORM action="." method="post">
+{% csrf_token %}
+    <TABLE>
+        <TR>
+            <TD>
+                {{ chooseform.as_ul }}
+            </TD>
+            <TD>
+                <input type="submit"  name="chooseMaterialType" value="Submit" />
+            </TD>
+        </TR>
+    </TABLE>
+</FORM>
+{% endif %}
+{% endblock %}
+{% endblock %}

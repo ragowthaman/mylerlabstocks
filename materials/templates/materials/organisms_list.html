@@ -1,0 +1,17 @@
+{%block content%}
+{% block body %}
+
+{%  if organisms  %}
+    <TABLE>
+        <TR><TH>Sl. No.</TH><TH>Organism Code</TH><TH>Genus</TH><TH>Species</TH><TH>Strain</TH></TR>
+        {% for organism in organisms %}
+            <TR><TD>{{ forloop.counter }}</TD><TD><a href="/admin/ngsdbview/organism/{{ organism.organism_id}}/" target="_blank">{{ organism.organismcode }}</a></TD>
+                <TD>{{ organism.genus }}</TD>
+                <TD>{{ organism.species }}</TD>
+                <TD>{{ organism.strain }}</TD>
+            </TR>
+        {% endfor %}
+    </TABLE>
+{% endif %}
+{% endblock %}
+{% endblock %}

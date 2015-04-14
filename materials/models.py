@@ -43,8 +43,8 @@ class MaterialType(models.Model):
 
 
 class Material(models.Model):
-    code = models.CharField(max_length=10,  unique=True, db_index=True)
-    name = models.CharField(max_length=100, unique=True, db_index=True)
+    code = models.CharField(max_length=10,  unique=True, db_index=True, help_text="Code for the new material. Must be unique. May not contain spaces")
+    name = models.CharField(max_length=100, unique=True, db_index=True, help_text="Name for the new material. May contain spaces")
     type = models.ForeignKey(MaterialType,  help_text="Material Type")
     organism = models.ForeignKey(Organism)
     protocol = models.ForeignKey(Protocol)
