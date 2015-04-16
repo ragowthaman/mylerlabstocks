@@ -1,0 +1,28 @@
+[
+    {
+        "model": "materials.storage",
+        "pk": 1,
+        "fields": {
+            "name": "testFreezer01",
+            "building": "CIDResarch",
+            "floor": 1,
+            "location": "reception",
+            "temperature": "-70",
+            "unit_owner": "StarBucks",
+            "unit_contact": "ragowthaman@gmail.com"
+        }
+    },
+    {
+        "model": "materials.storage",
+        "pk": 2,
+        "fields": {
+            "name": "testFreezer02",
+            "building": "CIDResarch",
+            "floor": 5,
+            "location": "reception",
+            "temperature": "-20",
+            "unit_owner": "StarBucks",
+            "unit_contact": "ragowthaman@gmail.com"
+        }
+    }
+]

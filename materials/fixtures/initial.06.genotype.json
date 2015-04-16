@@ -1,0 +1,42 @@
+[
+    {
+        "model": "materials.genotype",
+        "pk": 1,
+        "fields": {
+            "genotype": "WT",
+            "notes": "Wildtype"
+        }
+    },
+    {
+        "model": "materials.genotype",
+        "pk": 2,
+        "fields": {
+            "genotype": "JBP2 +/-",
+            "notes": "JBP2 single knockout"
+        }
+    },
+    {
+        "model": "materials.genotype",
+        "pk": 3,
+        "fields": {
+            "genotype": "JBP2 -/-",
+            "notes": "JBP2 single knockout"
+        }
+    },
+    {
+        "model": "materials.genotype",
+        "pk": 4,
+        "fields": {
+            "genotype": "H3V -/-",
+            "notes": "H3V double knockout"
+        }
+    },
+    {
+        "model": "materials.genotype",
+        "pk": 5,
+        "fields": {
+            "genotype": "Tb927.10.6900 -/-",
+            "notes": "Tb927.10.6900 double knockout"
+        }
+    }
+]

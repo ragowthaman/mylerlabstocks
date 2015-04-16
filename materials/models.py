@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Author(models.Model):
     firstname = models.CharField(max_length=45)
@@ -24,6 +25,14 @@ class Organism(models.Model):
         return self.code + '-' + self.strain
 
 
+class Genotype(models.Model):
+    genotype = models.CharField(max_length=25, unique=True, db_index=True)
+    notes = models.TextField()
+
+    def __str__(self):
+        return self.genotype
+
+
 class Protocol(models.Model):
     name = models.CharField(unique=True, max_length=50)
     file = models.FileField(upload_to="protocols", blank=True)
@@ -35,7 +44,7 @@ class Protocol(models.Model):
 
 
 class MaterialType(models.Model):
-    type  = models.CharField(max_length=15, unique=True, db_index=True)
+    type = models.CharField(max_length=15, unique=True, db_index=True)
     notes = models.TextField()
 
     def __str__(self):
@@ -44,9 +53,10 @@ class MaterialType(models.Model):
 
 class Material(models.Model):
     code = models.CharField(max_length=10,  unique=True, db_index=True, help_text="Code for the new material. Must be unique. May not contain spaces")
-    name = models.CharField(max_length=100, unique=True, db_index=True, help_text="Name for the new material. May contain spaces")
+    name = models.CharField(max_length=100, db_index=True, help_text="Name for the new material. May contain spaces")
     type = models.ForeignKey(MaterialType,  help_text="Material Type")
     organism = models.ForeignKey(Organism)
+    genotype = models.ForeignKey(Genotype)
     protocol = models.ForeignKey(Protocol)
     notes = models.TextField()
 
@@ -55,9 +65,9 @@ class Material(models.Model):
 
 
 class MaterialPropertyType(models.Model):
-    term = models.CharField(max_length=20, unique=True, db_index=True)
+    term = models.CharField(max_length=200, db_index=True)
     notes = models.TextField()
-    materialtype  = models.ForeignKey(MaterialType)
+    materialtype = models.ForeignKey(MaterialType)
 
     def __str__(self):
         return self.term
@@ -94,17 +104,18 @@ class Storage(models.Model):
 class StorageInstance(models.Model):
     material = models.ForeignKey(Material)
     storage = models.ForeignKey(Storage, help_text="Stored at", verbose_name="Stored at :")
-    rack = models.CharField(max_length=5, verbose_name="Rack/Tower/Shelf Name:", help_text="Avoid extra text like 6th rack")
-    box = models.CharField(max_length=5,  verbose_name="Box/outer container Name:")
-    label = models.CharField(max_length=50, verbose_name="Label of top/side of container")
-    quantity = models.CharField(max_length=25, default='NA', verbose_name="Quantity in ug etc")
-    volume = models.CharField(max_length=25, default='NA', verbose_name="Quantity in ul etc")
-    concentration = models.CharField(max_length=25, default='NA', verbose_name="ng/ul or 1000cells/ul etc")
-    date_stored = models.DateField(verbose_name="Date sample stored/frozen/received")
+    rack = models.CharField(max_length=25, verbose_name="Rack/Tower/Shelf Name:", help_text="Avoid extra text like 6th rack")
+    box = models.CharField(max_length=50,  blank=True, verbose_name="Box/outer container Name:")
+    cell = models.CharField(max_length=5, blank=True, verbose_name="Row and Column number within box:")
+    label = models.CharField(max_length=50, blank=True, verbose_name="Label of top/side of container")
+    quantity = models.CharField(max_length=25, blank=True, default='NA', verbose_name="Quantity in ug etc")
+    volume = models.CharField(max_length=25, blank=True, default='NA', verbose_name="Quantity in ul etc")
+    concentration = models.CharField(max_length=25, blank=True, default='NA', verbose_name="ng/ul or 1000cells/ul etc")
+    date_stored = models.DateField(blank=True, verbose_name="Date sample stored/frozen/received")
     stored_by = models.ForeignKey(Author)
-    notebook_ref = models.CharField(max_length=100, null=True, verbose_name="Note book Reference", help_text="Note Book Name:Number:Page")
-    notes = models.TextField()
+    notebook_ref = models.CharField(max_length=100, blank=True, verbose_name="Note book Reference", help_text="Note Book Name:Number:Page")
+    notes = models.TextField(blank=True)
 
     def __str__(self):
-        return self.material.code + ' ' + self.st
+        return self.rack
 

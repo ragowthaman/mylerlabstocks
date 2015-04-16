@@ -13,7 +13,7 @@ class MaterialForm(forms.ModelForm):
 
     class Meta:
         model = Material
-        fields = ('code', 'name', 'type', 'organism', 'protocol')
+        fields = ('code', 'name', 'type', 'organism', 'protocol', 'genotype')
 
     # Now add MaterialType specific MaterialProperty fields to the form
     def __init__(self, *args, **kwargs):
@@ -39,7 +39,7 @@ class StorageInstanceForm(forms.ModelForm):
 
     class Meta:
         model = StorageInstance
-        fields = ('material', 'storage', 'rack', 'box', 'label', 'quantity', 'volume', 'concentration', 'date_stored', 'stored_by', 'notebook_ref', 'notes')
+        fields = ('material', 'storage', 'rack', 'box', 'cell', 'label', 'quantity', 'volume', 'concentration', 'date_stored', 'stored_by', 'notebook_ref', 'notes')
 
 
 class MaterialFilterForm(forms.Form):

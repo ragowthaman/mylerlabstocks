@@ -46,7 +46,67 @@
             "code": "Ldo",
             "genus": "Leishmania",
             "species": "donovani",
-            "strain": "S"
+            "strain": "1S"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 6,
+        "fields": {
+            "code": "Lta",
+            "genus": "Leishmania",
+            "species": "tarentolae",
+            "strain": "TarII"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 7,
+        "fields": {
+            "code": "Ldo",
+            "genus": "Leishmania",
+            "species": "donovani",
+            "strain": "Bob"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 8,
+        "fields": {
+            "code": "Lbr",
+            "genus": "Leishmania",
+            "species": "braziliensis",
+            "strain": "M2904"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 9,
+        "fields": {
+            "code": "Tb",
+            "genus": "Trypanosoma",
+            "species": "brucei",
+            "strain": "927"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 10,
+        "fields": {
+            "code": "Ldo",
+            "genus": "Trypanosoma",
+            "species": "cruzi",
+            "strain": "YC"
+        }
+    },
+    {
+        "model": "materials.organism",
+        "pk": 11,
+        "fields": {
+            "code": "Ldo",
+            "genus": "Trypanosoma",
+            "species": "cruzi",
+            "strain": "CR Brener"
         }
     }
 

@@ -13,8 +13,8 @@
         "model": "materials.author",
         "pk": 2,
         "fields": {
-            "firstname": "Aarti",
-            "lastname": "Sekhar",
+            "firstname": "Aarthi",
+            "lastname": "Sekar",
             "designation": "AS",
             "email": "aarti.sekhar@seattlebiomed.org"
         }
@@ -27,6 +27,36 @@
             "lastname": "Baugh",
             "designation": "LB",
             "email": "loren.baugh@seattlebiomed.org"
+        }
+    },
+    {
+        "model": "materials.author",
+        "pk": 4,
+        "fields": {
+            "firstname": "Paul-André",
+            "lastname": "Genest",
+            "designation": "PG",
+            "email": "p.genest@nki.nl"
+        }
+    },
+    {
+        "model": "materials.author",
+        "pk": 5,
+        "fields": {
+            "firstname": "Ariel",
+            "lastname": "Abramov",
+            "designation": "AA",
+            "email": "ariel.abramov@seattlebiomed.org"
+        }
+    },
+    {
+        "model": "materials.author",
+        "pk": 6,
+        "fields": {
+            "firstname": "Unknown",
+            "lastname": "Unknown",
+            "designation": "UU",
+            "email": "Unknown.Unknown@seattlebiomed.org"
         }
     }
 ]

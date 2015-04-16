@@ -48,7 +48,7 @@
       "model": "materials.materialPropertyType",
       "pk": 6,
       "fields": {
-          "term": "name_before",
+          "term": "stabili_name_prior_to_transformation",
           "notes": "Name of the stabilate used for transformation",
           "materialtype": 1
       }
@@ -57,9 +57,55 @@
       "model": "materials.materialPropertyType",
       "pk": 7,
       "fields": {
-          "term": "code_before",
+          "term": "clones_used_in_prior_transformation",
           "notes": "Code of the stabilates used for transformation; Foreign key to the clone in this database;",
           "materialtype": 1
       }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 8,
+      "fields": {
+          "term": "purpose_of_transformation",
+          "notes": "Purpose of this transformation;",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 9,
+      "fields": {
+          "term": "WHO_designation",
+          "notes": "WHO_designation;",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 10,
+      "fields": {
+          "term": "LRV1",
+          "notes": "LRV1;",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 11,
+      "fields": {
+          "term": "LD1",
+          "notes": "LD1;",
+          "materialtype": 1
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 12,
+      "fields": {
+          "term": "Reference",
+          "notes": "Reference;",
+          "materialtype": 1
+      }
     }
+
 ]
