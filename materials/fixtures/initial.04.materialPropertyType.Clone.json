@@ -1,0 +1,47 @@
+[
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 21,
+      "fields": {
+          "term": "plasmid_or_glycerol",
+          "notes": "Is it plasmid dna in buffer or Glycerol stock of host with plasmid",
+          "materialtype": 2
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 22,
+      "fields": {
+          "term": "vector",
+          "notes": "Name of the vector",
+          "materialtype": 2
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 23,
+      "fields": {
+          "term": "resistance_marker",
+          "notes": "Bacterial Resistance Marker(s) in plasmid",
+          "materialtype": 2
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 24,
+      "fields": {
+          "term": "bacterial_strain",
+          "notes": "Bacterial strain hosting the plasmid; applicable only for Glycerol Stocks;",
+          "materialtype": 2
+      }
+    },
+    {
+      "model": "materials.materialPropertyType",
+      "pk": 25,
+      "fields": {
+          "term": "sequence",
+          "notes": "Sequence of the plasmid",
+          "materialtype": 2
+      }
+    }
+]

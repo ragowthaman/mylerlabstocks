@@ -1,6 +1,16 @@
 [
     {
         "model": "materials.organism",
+        "pk": 100,
+        "fields": {
+            "code": "NA",
+            "genus": "Unknown",
+            "species": "Unknown",
+            "strain": "Unknown"
+        }
+    },
+    {
+        "model": "materials.organism",
         "pk": 1,
         "fields": {
             "code": "Lmj",

@@ -38,5 +38,13 @@
             "genotype": "Tb927.10.6900 -/-",
             "notes": "Tb927.10.6900 double knockout"
         }
+    },
+    {
+        "model": "materials.genotype",
+        "pk": 6,
+        "fields": {
+            "genotype": "NA",
+            "notes": "Not applicable; eg, for a plasmid or PCR product"
+        }
     }
 ]

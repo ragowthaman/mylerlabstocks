@@ -40,10 +40,6 @@ def excelDateValue2timeStampStr(cellValue, outFormat):
 #
 #  Main
 #################################################################################
-# delete objects:
-# Material.objects.all().delete()
-# MaterialProperty.objects.all().delete()
-# StorageInstance.objects.all().delete()
 
 args = argparse()
 legacyDataSheet = args.legacyDataSheet
@@ -51,32 +47,43 @@ legacyDataSheet = args.legacyDataSheet
 workbook = xlrd.open_workbook(legacyDataSheet)
 datatab = workbook.sheet_by_index(0)
 #excelDateValue2timeStampStr(row_content[5].value, outFormat = '%m/%d/%y %H:%M:%S'),
-for row_index in range(3, datatab.nrows):
+for row_index in range(2, datatab.nrows):
     row_content = datatab.row(row_index)
-    #print(row_content)
-    #print row_content
-    [ uid, organism, genotype, name, label, date_stored, stored_by, box, cell, is_transformed, episomal_or_stable, anitbiotics, clone_used_in_transformation, notebook_ref, notes, stabili_name_prior_to_transformation, clones_used_in_prior_transformation, purpose_of_transformation, WHO_designation, LRV1, LD1, Reference ] = [ int(row_content[0].value), row_content[1].value.rstrip(), row_content[2].value.rstrip(), row_content[3].value.rstrip(), row_content[4].value.rstrip(), row_content[5].value, row_content[6].value.rstrip(), row_content[7].value.rstrip(), row_content[8].value.rstrip(), row_content[9].value.rstrip(), row_content[10].value.rstrip(), row_content[11].value.rstrip(), row_content[12].value.rstrip(), row_content[13].value.rstrip(), row_content[14].value.rstrip(), row_content[15].value.rstrip(), row_content[16].value.rstrip(), row_content[17].value.rstrip(), row_content[18].value.rstrip(), row_content[19].value.rstrip(), row_content[20].value.rstrip(), row_content[21].value.rstrip()]
+    print(row_content)
+    [ uid, name, label, box, cell, date_stored, stored_by, notebook_ref ] = [
+        int(row_content[0].value), row_content[2].value.rstrip(),
+        str(row_content[3].value).rstrip(), row_content[8].value.rstrip(),
+        row_content[9].value.rstrip(), row_content[10].value,
+        row_content[11].value.rstrip(), row_content[12].value.rstrip()]
     print(uid)
-    code = 'Stabi'+ format(uid, '04d')
-    material_properties = list(zip(['is_transformed', 'episomal_or_stable', 'antibiotics', 'clone_code', 'stabili_name_prior_to_transformation', 'clones_used_in_prior_transformation', 'purpose_of_transformation', 'WHO_designation', 'LRV1', 'LD1', 'Reference'], [row_content[9].value.rstrip(), row_content[10].value.rstrip(), row_content[11].value.rstrip(), row_content[12].value.rstrip(), row_content[15].value.rstrip(), row_content[16].value.rstrip(), row_content[17].value.rstrip(), row_content[18].value.rstrip(), row_content[19].value.rstrip(), row_content[20].value.rstrip(), row_content[21].value.rstrip()]))
+    code = 'Clone'+ format(uid, '04d')
+    material_properties = list(zip(['plasmid_or_glycerol', 'vector', 'resistance_marker', 'bacterial_strain', 'sequence'], [row_content[1].value.rstrip(), row_content[5].value.rstrip(), row_content[6].value.rstrip(), row_content[7].value.rstrip(), row_content[13].value.rstrip()]))
 
-    stored_by_list = stored_by.split(" ")
+    # Parse author
+    stored_by_list = []
+    if stored_by == '':
+        stored_by_list = ['Unknown', 'Unknown']
+    elif stored_by == 'Genscript':
+        stored_by_list = ['Genscript', 'Genscript']
+    else:
+        stored_by_list = stored_by.split(" ")
 
-    if date_stored == 'Blank':
+    #parse date
+    if (date_stored == 'Blank') | (date_stored == ''):
         date_stored = '1000-01-01'
     else:
-        date_stored = excelDateValue2timeStampStr(row_content[5].value, outFormat='%Y-%m-%d')
+        date_stored = excelDateValue2timeStampStr(date_stored, outFormat='%Y-%m-%d')
     print(date_stored)
-    orgdic = {'L. donovani 1S':5, 'L. tarentolae TarII': 6, 'L. major Friedlin': 1, 'T. cruzi YC': 10, 'T. cruzi CR Brener': 11, 'L. braziliensis M2904': 8, 'T. brucei 927': 9, 'L. donovani Bob': 7}
-    genotypeObj = Genotype.objects.get(genotype=genotype)
+    organism = 'NA'
+    orgdic = {'NA': 100, 'L. donovani 1S':5, 'L. tarentolae TarII': 6, 'L. major Friedlin': 1, 'T. cruzi YC': 10, 'T. cruzi CR Brener': 11, 'L. braziliensis M2904': 8, 'T. brucei 927': 9, 'L. donovani Bob': 7}
+    genotypeObj = Genotype.objects.get(genotype='NA')
     organismObj = Organism.objects.get(id=orgdic[organism])
-    typeObj = MaterialType.objects.get(type="Stabilate")
+    typeObj = MaterialType.objects.get(type="Clone")
     protocolObj = Protocol.objects.get(name='test')
 
     material_instance = Material(genotype=genotypeObj, organism=organismObj, type=typeObj, protocol=protocolObj)
     material_instance.code = code
     material_instance.name = name
-    material_instance.notes = notes
     material_instance.save()
 
     # Now save material properties
@@ -85,11 +92,12 @@ for row_index in range(3, datatab.nrows):
         materialproperty_instance = MaterialProperty(material=material_instance)
         materialproperty_instance.material_property_type = MaterialPropertyType.objects.get(term=pair[0])
         materialproperty_instance.value = pair[1]
-        materialproperty_instance.save()
+        if pair[1] != '':
+            materialproperty_instance.save()
 
     # Now save storage instance
     storageinstance_instance = StorageInstance(material=material_instance)
-    storageinstance_instance.storage = Storage.objects.get(name='testFreezer01')
+    storageinstance_instance.storage = Storage.objects.get(name='testFreezer02')
     storageinstance_instance.rack = 'NoMoreRack'
     storageinstance_instance.box = box
     storageinstance_instance.cell = cell
@@ -98,8 +106,6 @@ for row_index in range(3, datatab.nrows):
     print(stored_by_list)
     storageinstance_instance.stored_by = Author.objects.get(firstname=stored_by_list[0], lastname=stored_by_list[1])
     storageinstance_instance.notebook_ref = notebook_ref
-    storageinstance_instance.notes = notes
-
     storageinstance_instance.save()
     print(uid)
     print("#####################")

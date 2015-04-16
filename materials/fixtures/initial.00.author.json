@@ -58,5 +58,15 @@
             "designation": "UU",
             "email": "Unknown.Unknown@seattlebiomed.org"
         }
+    },
+    {
+        "model": "materials.author",
+        "pk": 7,
+        "fields": {
+            "firstname": "Genscript",
+            "lastname": "Genscript",
+            "designation": "GS",
+            "email": "gene@genscript.com"
+        }
     }
 ]

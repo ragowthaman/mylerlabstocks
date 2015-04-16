@@ -105,7 +105,7 @@ class StorageInstance(models.Model):
     material = models.ForeignKey(Material)
     storage = models.ForeignKey(Storage, help_text="Stored at", verbose_name="Stored at :")
     rack = models.CharField(max_length=25, verbose_name="Rack/Tower/Shelf Name:", help_text="Avoid extra text like 6th rack")
-    box = models.CharField(max_length=50,  blank=True, verbose_name="Box/outer container Name:")
+    box = models.CharField(max_length=100,  blank=True, verbose_name="Box/outer container Name:")
     cell = models.CharField(max_length=5, blank=True, verbose_name="Row and Column number within box:")
     label = models.CharField(max_length=50, blank=True, verbose_name="Label of top/side of container")
     quantity = models.CharField(max_length=25, blank=True, default='NA', verbose_name="Quantity in ug etc")
