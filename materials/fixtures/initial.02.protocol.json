@@ -7,5 +7,14 @@
             "link": "www.google.com",
             "notes": "test entry"
         }
+    },
+    {
+        "model": "materials.protocol",
+        "pk": 2,
+        "fields": {
+            "name": "test02",
+            "link": "www.google.com/test02/",
+            "notes": "test entry for loren"
+        }
     }
 ]
