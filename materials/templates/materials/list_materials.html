@@ -1,0 +1,68 @@
+{%block content%}
+{% block body %}
+
+{%  if materials  %}
+    <FORM action="." method="post">
+    {% csrf_token %}
+        <TABLE>
+            <TR>
+                <TD>
+                    {{ form.as_table }}
+                </TD>
+
+                <TD>
+                    <input type="submit"  name="filterMaterial" value="Filter Material List" />
+                 </TD>
+            </TR>
+        </TABLE>
+    {# List the Materials #}
+    <TABLE>
+        <TR> <!-- Filter row on the top of table -->
+            <TD></TD>
+            <TD>{{  form.code }}</TD>
+            <TD>{{  form.name }}</TD>
+            <TD>{{  form.type }}</TD>
+            <TD>{{  form.organism }}</TD>
+            <TD>{{  form.protocol }}</TD>
+        </TR>
+        <TR> <!-- Header row on the top of table -->
+            <TH>Sl. No.</TH>
+            <TH>Material Code</TH>
+            <TH>Name</TH>
+            <TH>Material Type</TH>
+            <TH>Organism</TH>
+            <TH>Protocol Used</TH>
+            <TH>Notes</TH>
+        </TR>
+            <!-- Data row on the top of table -->
+        {% for material in materials %}
+            <TR><TD>{{ forloop.counter }}</TD>
+                <TD><a href="/admin/ngsdbview/organism/{{ material.code}}/" target="_blank">{{ material.code }}</a></TD>
+                <TD>{{ material.name }}</TD>
+                <TD>{{ material.type }}</TD>
+                <TD>{{ material.organism }}</TD>
+                <TD>{{ material.protocol }}</TD>
+                <TD>{{ material.notes }}</TD>
+            </TR>
+        {% endfor %}
+    </TABLE>
+    </FORM>
+
+{% else %}
+<FORM action="." method="post">
+{% csrf_token %}
+    <TABLE>
+        <TR>
+            <TD>
+                {{ form.as_table }}
+            </TD>
+            <TD>
+                <input type="submit"  name="chooseMaterialType" value="Submit" />
+            </TD>
+        </TR>
+    </TABLE>
+</FORM>
+
+{% endif %}
+{% endblock %}
+{% endblock %}

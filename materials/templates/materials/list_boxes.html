@@ -1,0 +1,33 @@
+{%block content%}
+{% block body %}
+{% load templatetags %}
+
+{%  if racks  %}
+    <TABLE>
+        <TR><TH>Sl. No.</TH><TH>Storage Name</TH><TH>Rack Name</TH><TH>Floor</TH><TH>Location</TH><TH>Temperature</TH><TH>unit_owner</TH><TH>unit_contact</TH></TR>
+        {% for rack in racks %}
+            <TR><TD>{{ forloop.counter }}</TD><TD><a href="/admin/materials/storage/{{ storage.id}}/" target="_blank">{{ storage.name }}</a></TD>
+                <TD>{{ rack }}</TD>
+                <TD>{{ storage.floor }}</TD>
+                <TD>{{ storage.location }}</TD>
+                <TD>{{ storage.temperature }}</TD>
+                <TD>{{ storage.unit_owner }}</TD>
+                <TD>{{ storage.unit_contact }}</TD>
+            </TR>
+        {% endfor %}
+    </TABLE>
+{% endif %}
+{%  if boxes  %}
+    <TABLE>
+        <TR><TH>Sl. No.</TH><TH>Box Name</TH><TH>Number of Items in this box</TH></TR>
+        {% for box_name, box_info_dict in boxes.items %}
+            <TR><TD>{{ forloop.counter }}</TD><TD><a href="/materials/view/box/boxview/{{ storage.id }}/{{ box_info_dict|hash:'rack' }}/{{ box_name }}/" target="_blank">{{ box_name }}</a></TD>
+                <TD>{{ box_info_dict|hash:'rack' }}</TD>
+
+
+            </TR>
+        {% endfor %}
+    </TABLE>
+{% endif %}
+{% endblock %}
+{% endblock %}

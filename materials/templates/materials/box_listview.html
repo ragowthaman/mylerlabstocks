@@ -1,0 +1,37 @@
+{%block content%}
+{% block body %}
+{% load templatetags %}
+{%  if items  %}
+    <TABLE>
+    <TR><TH>Storage Name:</TH><TD>{{ storage.name }}</TD></TR>
+    <TR><TH>Rack Name:</TH><TD>{{ rack }}</TD></TR>
+    <TR><TH>Box Name:</TH><TD>{{ box }}</TD></TR>
+    </TABLE>
+    <TABLE>
+        <TR><TH>Sl. No.</TH><TH>Cell/Position</TH><TH>Material Code</TH><TH>Type</TH><TH>Name</TH><TH>Organism</TH><TH>Genotype</TH><TH>Protocol</TH><TH>notes</TH></TR>
+        {% for item_instance, item_properties in items.items %}
+
+            <TR><TD>{{ forloop.counter }}</TD>
+                <TD>{{ item_instance.cell }}</TD>
+                <TD><a href="/admin/materials/storage/{{ item_instance.material.code }}/" target="_blank">{{ item_instance.material.code }}</a></TD>
+                <TD>{{ item_instance.material.code }}</TD>
+                <TD>{{ item_instance.material.name }}</TD>
+                <TD>{{ item_instance.material.organism }}</TD>
+                <TD>{{ item_instance.material.genotype }}</TD>
+                <TD>{{ item_instance.material.protocol }}</TD>
+                <TD>{{ item_instance.material.notes }}</TD>
+                <TD>
+                    <TABLE>
+                        <TR><TH>Material Property</TH><TH>Value</TH></TR>
+                        {% for item_property in item_properties %}
+                            <TR><TD>{{ item_property.material_property_type }}</TD><TD>{{  item_property.value }}</TD></TR>
+                        {% endfor %}
+                    </TABLE>
+                </TD>
+
+            </TR>
+        {% endfor %}
+    </TABLE>
+{% endif %}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,133 @@
+{%block content%}
+{% block body %}
+{% load templatetags %}
+
+<!-- display form to choose the fields to display -->
+{%  if material_fields  %}
+<FORM action="." method="post">
+{% csrf_token %}
+<div>
+    <TABLE><TR><TD>
+        <!-- material fields -->
+        <TABLE>
+            {% for fieldname in material_fields %}
+            <TR>
+                <TD>
+                    <input type=checkbox name="material_fields_selected" value="{{ fieldname }}"> {{ fieldname }}
+                </TD>
+            </TR>
+            {% endfor %}
+        </TABLE>
+        </TD><TD>
+        <TABLE>
+            {% for fieldname in storageinstance_fields %}
+            <TR>
+                <TD>
+                    <input type=checkbox name="storageinstance_fields_selected" value="{{ fieldname }}"> {{ fieldname }}
+                </TD>
+            </TR>
+            {% endfor %}
+
+        </TABLE>
+    </TD></TR></TABLE>
+</div>
+    <TABLE>
+        <TR>
+                <TD>
+                <input type="submit"  name="Display Selected Fields" value="Submit" />
+                </TD>
+            </TR>
+    </TABLE>
+</FORM>
+{% endif %}
+
+<!-- display storage unit, rack, box name etc -->
+{%  if itemsByPosition  %}
+    <TABLE><TR><TD>
+        <TABLE>
+            <TR><TH>Storage Name:</TH><TD>{{ storage.name }}</TD></TR>
+            <TR><TH>Rack Name:</TH><TD>{{ rack }}</TD></TR>
+            <TR><TH>Box Name:</TH><TD>{{ box }}</TD></TR>
+        </TABLE>
+    <TD></TD>
+        <TABLE>
+            <TR><TH>Time stamp for this view:</TH><TD>{{ timenow|date:"D d M Y" }}</TD></TR>
+        </TABLE>
+    </TD></TR></TABLE>
+
+    <!-- printing box layout -->
+    <TABLE border="1">
+    {% for letter in letters %}
+    <TR> <!-- print a row per letter -->
+        {% for number in numbers %}
+            <TD> <!-- print a column per number -->
+            <TABLE>
+                <TR><TD>
+                {% with letter|addstr:number as pos %}
+                    {{ pos }} <!-- print a cell name letter+number -->
+                    <!-- print a each of user selected attributes -->
+                    </TD></TR><TR><TD>
+                    {%  with itemsByPosition|hash:pos as obj  %}
+                        {%  if obj %}
+                        {% if 'type' in material_fields_to_display %}
+                            {{ obj.material.type }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'code' in material_fields_to_display %}
+                            Code:{{ obj.material.code }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'organism' in material_fields_to_display %}
+                            Org:{{ obj.material.organism }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'genotype' in material_fields_to_display %}
+                            GT:{{ obj.material.genotype }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'name' in material_fields_to_display %}
+                            Name:{{ obj.material.name }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'label' in storageinstance_fields_to_display %}
+                            Label:{{ obj.label }}
+                        {% endif %}
+
+                    </TD></TR><TR><TD>
+                        {% if 'volume' in storageinstance_fields_to_display %}
+                            Vol:{{ obj.volume }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'quantity' in storageinstance_fields_to_display %}
+                            Qty:{{ obj.quantity }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'concentration' in storageinstance_fields_to_display %}
+                            Conc:{{ obj.concentration }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'date_stored' in storageinstance_fields_to_display %}
+                            Date stored:{{ obj.date_stored }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'storedby' in storageinstance_fields_to_display %}
+                            StoredBy:{{ obj.storedby }}
+                        {% endif %}
+                    </TD></TR><TR><TD>
+                        {% if 'notebook_ref' in storageinstance_fields_to_display %}
+                            NB.Ref:{{ obj.concentration }}
+                        {% endif %}
+                    </TD></TR>
+                    {% endif %}
+                    {% endwith %}
+                {% endwith %}
+            </TABLE>
+            </TD>
+        {% endfor %}
+    </TR>
+    {% endfor %}
+    </TABLE>
+
+{% endif %}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{%block content%}
+{% block body %}
+
+{%  if storages  %}
+    <TABLE>
+        <TR><TH>Sl. No.</TH><TH>Storage Name</TH><TH>Floor</TH><TH>Location</TH><TH>Temperature</TH><TH>unit_owner</TH><TH>unit_contact</TH></TR>
+        {% for storage in storages %}
+            <TR><TD>{{ forloop.counter }}</TD><TD><a href="/admin/materials/storage/{{ storage.id}}/" target="_blank">{{ storage.name }}</a></TD>
+                <TD>{{ storage.floor }}</TD>
+                <TD>{{ storage.location }}</TD>
+                <TD>{{ storage.temperature }}</TD>
+                <TD>{{ storage.unit_owner }}</TD>
+                <TD>{{ storage.unit_contact }}</TD>
+            </TR>
+        {% endfor %}
+    </TABLE>
+{% endif %}
+{% endblock %}
+{% endblock %}

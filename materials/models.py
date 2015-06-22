@@ -82,7 +82,7 @@ class MaterialProperty(models.Model):
         verbose_name_plural = "MaterialProperties"
 
     def __str__(self):
-        return self.material_property_type.term
+        return self.material_property_type.term + ':' + self.value
 
 
 class Storage(models.Model):
@@ -117,5 +117,5 @@ class StorageInstance(models.Model):
     notes = models.TextField(blank=True)
 
     def __str__(self):
-        return self.rack
+        return self.material.code
 
